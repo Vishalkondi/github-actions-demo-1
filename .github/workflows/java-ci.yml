@@ -5,25 +5,37 @@ on:
     branches:
       - main
 
+  pull_request:
+    branches:
+      - main
+
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Java
+      - name: Setup Java 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      - name: Verify Java
+      - name: Verify Java Version
         run: java -version
 
-      - name: Verify Maven
+      - name: Verify Maven Version
         run: mvn -version
 
+      - name: Clean Project
+        run: mvn clean
+
+      - name: Run JUnit Tests
+        run: mvn test
+
       - name: Build Project
-        run: mvn clean package
+        run: mvn package
