@@ -1,0 +1,30 @@
+name: My First GitHub Action
+
+on:
+  push:
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Print Welcome Message
+        run: echo "Hello Vishal! Welcome to GitHub Actions."
+
+      - name: Display Current Date
+        run: date
+
+      - name: Display Working Directory
+        run: pwd
+
+      - name: List Repository Files
+        run: ls -la
+
+      - name: Display Git Version
+        run: git --version
+
+      - name: Finish
+        run: echo "Workflow completed successfully!"
